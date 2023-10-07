@@ -53,10 +53,10 @@ const deleteUser = (id) => {
     }
 }
 
-// const findUserByJob = (users,job) => { 
-//     return users['users_list']
-//         .filter( (user) => user['name'] === job); 
-// }
+const findUserByJob = (users_list,job) => { 
+    return users_list['users_list']
+        .filter( (user) => user['job'] === job); 
+}
 
 app.use(express.json());
 
@@ -64,18 +64,42 @@ app.get('/', (req, res) =>{
     res.send('Hello World!');
 });
 
+// app.get('/users', (req, res) => {
+//     const name = req.query.name;
+//     const job = req.query.job;
+//     if (name != undefined){
+//         let result = findUserByName(name);
+//         if(job != undefined){
+            
+//             let filt_result = {users_list: result};
+//             filt_result = findUserByJob(filt_result, job);
+//             res.send(filt_result);
+//         }else {
+//             result = {users_list: result};
+//             res.send(result);
+//         }   
+//     }
+//     else{
+//         res.send(users);
+//     }
+// });
+
 app.get('/users', (req, res) => {
     const name = req.query.name;
     const job = req.query.job;
+    let filt_users;
     if (name != undefined){
         let result = findUserByName(name);
-        result = {users_list: result};
-        res.send(result);
+        filt_users = {users_list: result};
+    }else{
+        filt_users = users;
     }
-    else{
-        res.send(users);
+    if (job!=undefined){
+        let result = findUserByJob(filt_users,job);
+        filt_users = {users_list: result};
     }
-});
+    res.send(filt_users);
+}); 
 
 app.get('/users/:id', (req, res) => {
     const id = req.params['id']; //or req.params.id
