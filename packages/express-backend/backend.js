@@ -43,17 +43,13 @@ const findUserById = (id) =>
 
 const addUser = (user) => {
     
-    user['id'] = Math.floor(Math.random() * (Number.MAX_SAFE_INTEGER + 1))
+    user['id'] = (Math.floor(Math.random() * (Number.MAX_SAFE_INTEGER + 1))).toString(10);
     users['users_list'].push(user);
     return user;
 }
 const deleteUser = (id) => {
     let idx = users["users_list"].findIndex((user) => user['id'] === id);
-    if(idx === -1){
-        res.status(404).send("Resource not found.");
-    }else{
-        users["users_list"].splice(idx,1);
-    }
+    return idx;
 }
 
 const findUserByJob = (users_list,job) => { 
@@ -103,9 +99,14 @@ app.post('/users', (req, res) => {
 
 
 app.delete('/users/:id', (req,res) =>{
-    const userToDelete = req.params['id'];
-    deleteUser(userToDelete);
-    res.status(204).send();
+    const id = req.params['id'];
+    let idx = deleteUser(id);
+    if(idx !== -1){
+        users["users_list"].splice(idx,1);
+        res.status(204).send();
+    }else{
+        res.status(404).send("Resource not found.");
+    }
 })
 
 app.listen(port, () =>{
