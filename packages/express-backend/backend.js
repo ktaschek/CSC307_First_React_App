@@ -42,6 +42,8 @@ const findUserById = (id) =>
         .find( (user) => user['id'] === id);
 
 const addUser = (user) => {
+    
+    user['id'] = Math.floor(Math.random() * (Number.MAX_SAFE_INTEGER + 1))
     users['users_list'].push(user);
     return user;
 }
@@ -96,7 +98,7 @@ app.get('/users/:id', (req, res) => {
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
-    res.send();
+    res.status(201).send("Content Created");
 });
 
 
