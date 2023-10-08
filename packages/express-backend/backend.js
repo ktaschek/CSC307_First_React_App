@@ -97,15 +97,15 @@ app.get('/users/:id', (req, res) => {
 
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
-    addUser(userToAdd);
-    res.status(201).send("Content Created");
+    let user = addUser(userToAdd);
+    res.status(201).send(user);
 });
 
 
 app.delete('/users/:id', (req,res) =>{
     const userToDelete = req.params['id'];
     deleteUser(userToDelete);
-    res.status(200).send("User Deleted Successfully");
+    res.status(204).send();
 })
 
 app.listen(port, () =>{
