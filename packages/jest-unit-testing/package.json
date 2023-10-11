@@ -4,7 +4,9 @@
   "main": "module.js",
   "type": "module",
   "scripts": {
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --coverage"
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --coverage",
+    "tdd": "cross-env NODE_OPTIONS=--experimental-vm-modules npx jest --watchAll --coverage"
+
   },
   "jest": {
     "transform": {}

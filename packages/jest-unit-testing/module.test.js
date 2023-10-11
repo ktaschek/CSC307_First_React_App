@@ -74,33 +74,33 @@ test('Testing div -- success', () => {
 });
 
 //containsNumber tests
-test('Testing containsNumber -- success', () => {
+test('Testing containsNumber -- False', () => {
     const got = mut.containsNumbers("!@#$%^&*()_+-=[]{}|:;'|\0,.<>/?~");
     expect(got).toBeFalsy();
 });
 
-test('Testing containsNumber -- success', () => {
+test('Testing containsNumber -- Truth', () => {
     const got = mut.containsNumbers("abc123");
     expect(got).toBeTruthy();
 });
 
-test('Testing containsNumber -- success', () => {
+test('Testing containsNumber -- Truth', () => {
     const got = mut.containsNumbers("123abc");
     expect(got).toBeTruthy();
 });
 
-test('Testing containsNumber -- success', () => {
+test('Testing containsNumber -- False', () => {
     const got = mut.containsNumbers("!@#$%^&*()_+-=[]{}|:;'|\0,.<>/?~");
     expect(got).toBeFalsy();
 });
 
-test('Testing containsNumber -- success', () => {
+test('Testing containsNumber -- False', () => {
     const got = mut.containsNumbers("The_quick_brown_fox_jumps_over_the_lazy_dog.");
     expect(got).toBeFalsy();
 });
 
 //The bug: no number, but space counted as number
-test('Testing containsNumber -- success', () => {
+test('Testing containsNumber -- Should be False: Is Truth', () => {
     const got = mut.containsNumbers(" ");
     expect(got).toBeTruthy();
 });
