@@ -41,7 +41,7 @@ function MyApp() {
   };
 
   function deleteUser(user){
-    let id = user["id"];
+    let id = user["_id"];
     const promise = fetch(`http://localhost:8000/users/${id}`, {
       method: "DELETE",
       headers: {

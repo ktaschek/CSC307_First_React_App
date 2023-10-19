@@ -1,2 +1,4 @@
 /node_modules
 /coverage
+/sample_testing.js
+/sample_testing.test.js
