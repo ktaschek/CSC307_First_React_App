@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import mut from "./user-services.js";
 
 const app = express();
 const port = 8000;
